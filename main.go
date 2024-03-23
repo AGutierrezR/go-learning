@@ -1,32 +1,35 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main()  {
 
-	// Arrays (are fixed size)
-	// var ages [3]int = [3]int{2, 27, 35}
-	var ages = [3]int{2, 27, 35}
-	names := [4]string{"Yoshi", "Mario", "Peach", "Bowser"}
-	names[1] = "Luigi"
+	// greeting := "Hello there friends!"
 
-	fmt.Println(ages, len(ages))
-	fmt.Println(names, len(names))
+	// fmt.Println(strings.Contains(greeting, "Hello")) // string.Contains is case sensitive 
+	// fmt.Println(strings.ReplaceAll(greeting, "friends", "ninjas"))
+	// fmt.Println(strings.ToUpper(greeting))
+	// fmt.Println(strings.Index(greeting, "ll"))
+	// fmt.Println(strings.Split(greeting, " "))
 	
-	// Slices (can be manipulated)
-	var scores = []int{100, 50, 60}
-	scores[2] = 25
-	scores = append(scores, 85)
+	// The original value is unchanged
+	// fmt.Println("Original value is unchanged", greeting)
 
-	fmt.Println(scores, len(scores))
+	ages := []int{45, 20, 35, 30, 75, 60, 50, 25}
+	
+	sort.Ints(ages) // this will change the original slice
+	fmt.Println(ages)
 
-	// Slice ranges
-	rangeOne := names[1:3] // include the first number but no the second
-	rangeTwo := names[2:] // from the first number until the dend
-	rangeThree := names[:3] // include the first number but no the second
+	index := sort.SearchInts(ages, 90) // if the item doesn't exist will return one number above the length
+	fmt.Println(index)
 
-	fmt.Println(rangeOne, rangeTwo, rangeThree)
+	names := []string{"yoshi", "mario", "peach", "bowser", "luigi"}
 
-	rangeOne = append(rangeOne, "Koopa")
-	fmt.Println(rangeOne)
+	sort.Strings(names)
+	fmt.Println((names))
+
+	fmt.Println(sort.SearchStrings(names, "bowser"))
 }
