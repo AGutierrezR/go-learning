@@ -2,44 +2,28 @@ package main
 
 import "fmt"
 
-var someName = "Yuji"
-// otherName := "Gojo" not working
-
 func main()  {
-	// Strings	
-	// var nameOne string = "Mario"
-	// var nameTwo = "Luigi"
-	// var nameThree string
+	age := 35
+	name := "Andres"
 
-	// fmt.Println(nameOne, nameTwo, nameThree)
+	// Print (no new line)
+	fmt.Print("Hello, ")
+	fmt.Print("world \n")
+	fmt.Print("new line \n")
 
-	// nameOne = "Peach"
-	// nameThree = "Bowser"
+	// Pringln (add a new line automatly)
+	fmt.Println("Hello world!")
+	fmt.Println("goodbye ninjas!")
+	fmt.Println("my age is", age, "and my name is", name) // no need for concatenation
 
-	// fmt.Println(nameOne, nameTwo, nameThree)
+	// Printf (formatted string) %_ format specifier
+	fmt.Printf("My age is %v and name is %v \n", age, name)
+	fmt.Printf("My age is %q and name is %q \n", age, name) // %q is for strings, number will be '#'
+	fmt.Printf("age is of type %T \n", age)
+	fmt.Printf("your scored %f points! \n", 2.255)
+	fmt.Printf("your scored %0.1f points! \n", 2.255)
 
-	// nameFour := "Yoshi"
-
-	// fmt.Println(nameOne, nameTwo, nameThree, nameFour)
-	// fmt.Println(someName)
-
-	// ints
-	var ageOne int = 20
-	var ageTwo = 30
-	ageThree := 40
-
-	fmt.Println(ageOne, ageTwo, ageThree)
-
-	// bits & memory
-	var numOne int8 = 127 // int8 from -128 to 127
-	var numTwo int8 = -128 // int8 from -128 to 127
-	var numThree uint = 25 // unit are positive number
-
-	fmt.Println(numOne, numTwo, numThree)
-
-	var scoreOne float32 = 25.98 // floatings number 
-	var scoreTwo float64 = 888888999.7 // large floating nubmers
-
-	fmt.Println(scoreOne, scoreTwo)
-
+	// Sprintf (save formatted strings)
+	var str  = fmt.Sprintf("My age is %v and name is %v", age, name)
+	println(str)
 }
