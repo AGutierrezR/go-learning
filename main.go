@@ -3,36 +3,34 @@ package main
 import "fmt"
 
 func main()  {
-	// Initial use of a for
-	// x := 0
-	
-	// for x < 5 {
-	// 	fmt.Println("Value of x is:", x)
-	// 	x++
+	// age := 45
+
+	// fmt.Println(age <= 50)
+	// fmt.Println(age >= 50)
+	// fmt.Println(age == 45)
+	// fmt.Println(age != 50)
+
+	// if age < 30 {
+	// 	fmt.Println("Age is less than 30")
+	// } else if age < 40 {
+	// 	fmt.Println("age is less than 40")
+	// } else {
+	// 	fmt.Println("age is not less than 45")
 	// }
 
-	// More regular way to using it (like JS)
-	// for i := 0; i < 5; i++ {
-	// 	fmt.Println("Value of x is:", i)
-	// }
+	names := []string{"mario", "luigi", "yoshi", "peach", "bowser"}
 
-	names := []string{"mario" , "luigi", "yoshi", "peach"}
+	for index, value := range names {
+		if index == 1 {
+			fmt.Println("Continuing at pos", index)
+			continue // allows to skip to the next item
+		}
 
-	// Using the len function to get the lenght of the array
-	// for i := 0; i < len(names); i++ {
-	// fmt.Println(names[i])
-	// }
+		if index > 2 {
+			fmt.Println("Breaking at pos", index)
+			break // break the loop, exit out of it
+		}
 
-	// Using the "range" that returns 2 values, index and value
-	// for index, value := range names {
-	// 	fmt.Printf("the positon at index %v is %v \n", index, value)
-	// }
-
-	// Ignoring one of the values using underscore (_)
-	for _, value := range names {
-		fmt.Printf("the value is %v \n", value)
-		value = "new string" // this won't change the value, this is a local scoped variable
+		fmt.Printf("The value at pos %v is %v \n", index, value)
 	}
-
-	fmt.Println(names) // will print the original names slice
 }
