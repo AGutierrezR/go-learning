@@ -1,35 +1,38 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+import "fmt"
 
 func main()  {
-
-	// greeting := "Hello there friends!"
-
-	// fmt.Println(strings.Contains(greeting, "Hello")) // string.Contains is case sensitive 
-	// fmt.Println(strings.ReplaceAll(greeting, "friends", "ninjas"))
-	// fmt.Println(strings.ToUpper(greeting))
-	// fmt.Println(strings.Index(greeting, "ll"))
-	// fmt.Println(strings.Split(greeting, " "))
+	// Initial use of a for
+	// x := 0
 	
-	// The original value is unchanged
-	// fmt.Println("Original value is unchanged", greeting)
+	// for x < 5 {
+	// 	fmt.Println("Value of x is:", x)
+	// 	x++
+	// }
 
-	ages := []int{45, 20, 35, 30, 75, 60, 50, 25}
-	
-	sort.Ints(ages) // this will change the original slice
-	fmt.Println(ages)
+	// More regular way to using it (like JS)
+	// for i := 0; i < 5; i++ {
+	// 	fmt.Println("Value of x is:", i)
+	// }
 
-	index := sort.SearchInts(ages, 90) // if the item doesn't exist will return one number above the length
-	fmt.Println(index)
+	names := []string{"mario" , "luigi", "yoshi", "peach"}
 
-	names := []string{"yoshi", "mario", "peach", "bowser", "luigi"}
+	// Using the len function to get the lenght of the array
+	// for i := 0; i < len(names); i++ {
+	// fmt.Println(names[i])
+	// }
 
-	sort.Strings(names)
-	fmt.Println((names))
+	// Using the "range" that returns 2 values, index and value
+	// for index, value := range names {
+	// 	fmt.Printf("the positon at index %v is %v \n", index, value)
+	// }
 
-	fmt.Println(sort.SearchStrings(names, "bowser"))
+	// Ignoring one of the values using underscore (_)
+	for _, value := range names {
+		fmt.Printf("the value is %v \n", value)
+		value = "new string" // this won't change the value, this is a local scoped variable
+	}
+
+	fmt.Println(names) // will print the original names slice
 }
