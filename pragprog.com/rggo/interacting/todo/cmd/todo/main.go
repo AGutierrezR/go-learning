@@ -1,9 +1,9 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
-	"strings"
 
 	"pragprog.com/rggo/interacting/todo"
 )
@@ -12,6 +12,13 @@ import (
 const todoFileName = ".todo.json"
 
 func main() {
+	// Parsing command line flags
+	task := flag.String("task", "", "Task to be included in the ToDo list")
+	list := flag.Bool("list", false, "List all tasks")
+	complete := flag.Int("complete", 0, "Item to be completed")
+
+	flag.Parse()
+
 	// Define a items	list
 	// With the `&` operator we create a pointer to the List type
 	// This allows us to modify the list in place and not just a copy of it
@@ -27,21 +34,39 @@ func main() {
 	switch {
 	// For no extra arguments, print the list
 	// by default the first argument is the program name
-	case len(os.Args) == 1:
+	case *list:
 		// List current to do items
 		for _, item := range *l {
-			fmt.Println(item.Task)
+			if !item.Done {
+				fmt.Println(item.Task)
+			}
 		}
-	// Concatenate all provided arguments with a space and
-	// add to the list as an item
-	default:
-		item := strings.Join(os.Args[1:], " ")
+	case *complete > 0:
+		// Complete the given item
+		if err := l.Complete(*complete); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
 
-		l.Add(item)
-
+		// Save the new list
 		if err := l.Save(todoFileName); err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
+	case *task != "":
+		// Add the task
+		l.Add(*task)
+
+		// Save the new list
+		if err := l.Save(todoFileName); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+	// Concatenate all provided arguments with a space and
+	// add to the list as an item
+	default:
+		// Invalid flag provided
+		fmt.Fprintln(os.Stderr, "Invalid option")
+		os.Exit(1)
 	}
 }
