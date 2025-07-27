@@ -8,8 +8,8 @@ import (
 	"pragprog.com/rggo/interacting/todo"
 )
 
-// Hardcoding the file name
-const todoFileName = ".todo.json"
+// Default file name
+var todoFileName = ".todo.json"
 
 func main() {
 
@@ -27,6 +27,11 @@ func main() {
 	complete := flag.Int("complete", 0, "Item to be completed")
 
 	flag.Parse()
+
+	// Check if the user defined the ENV VAR for a custom file name
+	if os.Getenv("TODO_FILENAME") != "" {
+		todoFileName = os.Getenv("TODO_FILENAME")
+	}
 
 	// Define a items	list
 	// With the `&` operator we create a pointer to the List type
